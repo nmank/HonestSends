@@ -130,7 +130,7 @@
             score -= stances * 10;
             score -= preClipping * 2;
             score -= pitches === 1 ? 5 : 0;
-            score -= daysWall * 5;
+            score -= Math.min(daysWall * (1000 / routeLength)-4,0)*10;
             score -= nightsGround * (20 * (1000 / routeLength));
             score -= stashedGear * 5;
             score -= supportMode === 1 ? 10 : 0;

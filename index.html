@@ -135,8 +135,10 @@
             score -= Math.max(nightsWall * Math.floor(1000 / routeLength)-4,0)*10;
             score -= nightsGround * (20 * (1000 / routeLength));
             score -= stashedGear * 5;
-            score -= supportMode === 1 ? 5 : 0;
             score -= walkingOff === 1 ? 10 : 0;
+            if (score < 100) {
+                score -= supportMode === 1 ? 10 : 0;
+            }
             score = Math.min(score, 100);
 
             const resultElement = document.getElementById("result");
@@ -148,9 +150,13 @@
                 emoji = "😐"; // Neutral face for mid scores
             } else if (score >= 0 && score < 25) {
                 emoji = "☹️"; // Frowny face for low scores
-            } else if (score < 0) {
+            } else if (score >= -100 && score < 0) {
                 emoji = "😡"; // Angry face for very low scores
-                }
+            }
+              else if (score < -100) {
+                emoji = "💩"; // Poopy face for very very low scores
+            }
+                
 
             resultElement.innerText = `Your score: ${score} ${emoji}`;
         }

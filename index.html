@@ -49,7 +49,7 @@
     <div class="container">
         <h1>Honest Sends</h1>
         <div>
-            <h3>An honest send of score of 100 is free climbing each pitch without falling and leading all significant pitches.</h3>
+            <h3>An honest send of score of 100 is free climbing each pitch without falling and leading all significant pitches. Find our scoring system <a href="https://stokenthefire.blogspot.com/2024/12/honest-sends-art-of-asterisk.html">here</a></h3>
         </div>
         <div class="input-group">
             <label for="sig-pitches">Number of significant pitches (offwidths, loose, wet, scary, or just plain hard climbing):</label>
@@ -108,7 +108,6 @@
         </div>
         <div class="result" id="result">Your score: --</div>
         </div>
-        <center> <a href="https://stokenthefire.blogspot.com/2024/12/honest-sends-art-of-asterisk.html">See our scoring system here.</a>
     </div>
     <script>
         function calculateScore() {
@@ -139,7 +138,20 @@
             score -= supportMode === 1 ? 10 : 0;
             score -= walkingOff === 1 ? 10 : 0;
 
-            document.getElementById("result").innerText = `Your score: ${score}`;
+            const resultElement = document.getElementById("result");
+            let emoji = ""; // Default is no emoji
+
+            if (score >= 75 && score <= 100) {
+                emoji = "😊"; // Happy face for high scores
+            } else if (score >= 25 && score < 75) {
+                emoji = "😐"; // Neutral face for mid scores
+            } else if (score >= 0 && score < 25) {
+                emoji = "☹️"; // Frowny face for low scores
+            } else if (score < 0) {
+                emoji = "😡"; // Angry face for very low scores
+                }
+
+            resultElement.innerText = `Your score: ${score} ${emoji}`;
         }
     </script>
 </body>

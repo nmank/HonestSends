@@ -48,6 +48,9 @@
 <body>
     <div class="container">
         <h1>Honest Sends</h1>
+        <div>
+            <h3>An honest send of score of 100 is free climbing each pitch without falling and leading all significant pitches.</h3>
+        </div>
         <div class="input-group">
             <label for="sig-pitches">Number of significant pitches (offwidths, loose, wet, scary, or just plain hard climbing):</label>
             <input type="number" id="sig-pitches" min="1" max="100" value="0">
@@ -81,8 +84,8 @@
             <input type="number" id="pitches" min="0" max="1" value="0">
         </div>
         <div class="input-group">
-            <label for="days-wall">Nights on the wall:</label>
-            <input type="number" id="days-wall" min="0" value="0">
+            <label for="nights-wall">Nights on the wall:</label>
+            <input type="number" id="nights-wall" min="0" value="0">
         </div>
         <div class="input-group">
             <label for="nights-ground">Nights spent on the ground:</label>
@@ -116,7 +119,7 @@
             const nLead = parseInt(document.getElementById("leading").value) || 0;
             const preClipping = parseInt(document.getElementById("pre-clipping").value) || 0;
             const pitches = parseInt(document.getElementById("pitches").value) || 0;
-            const daysWall = parseInt(document.getElementById("days-wall").value) || 0;
+            const nightsWall = parseInt(document.getElementById("nights-wall").value) || 0;
             const nightsGround = parseInt(document.getElementById("nights-ground").value) || 0;
             const stashedGear = parseInt(document.getElementById("stashed-gear").value) || 0;
             const supportMode = parseInt(document.getElementById("support-mode").value) || 0;
@@ -130,7 +133,7 @@
             score -= stances * 10;
             score -= preClipping * 2;
             score -= pitches === 1 ? 5 : 0;
-            score -= Math.max(daysWall * (1000 / routeLength)-4,0)*10;
+            score -= Math.max(nightsWall * Math.floor(1000 / routeLength)-4,0)*10;
             score -= nightsGround * (20 * (1000 / routeLength));
             score -= stashedGear * 5;
             score -= supportMode === 1 ? 10 : 0;
